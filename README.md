@@ -12,3 +12,4 @@
         <img alt="Coverage Status" src="https://coveralls.io/repos/github/alu0101203294/actions-sonarcloud/badge.svg?branch=main">
     </a>
 </p>
+
