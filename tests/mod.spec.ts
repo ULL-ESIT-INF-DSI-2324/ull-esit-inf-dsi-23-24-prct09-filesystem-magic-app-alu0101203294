@@ -1,13 +1,21 @@
 import 'mocha';
 import {expect} from 'chai';
-import {add} from "../src/mod.js";
+import { CSVProcesador, JSONProcesador } from "../src/Modificacion/mod.js";
 
-describe("add function tests", () => {
-  it("add(1, 8) returns value 9", () => {
-    expect(add(1, 8)).to.be.equal(9);
+describe('CSVProcesador', () => {
+  it('debería procesar correctamente un archivo CSV', () => {
+    const csvProcesador = new CSVProcesador();
+    const csvResultados = csvProcesador.procesar();
+    expect(csvResultados.beneficios).to.deep.equal([5, 7, 10]);
+    expect(csvResultados.pesos).to.deep.equal([2, 3, 4]);
   });
+});
 
-  it("add(-1, 8) returns value 7", () => {
-    expect(add(-1, 8)).to.be.equal(7);
+describe('JSONProcesador', () => {
+  it('debería procesar correctamente un archivo JSON', () => {
+    const jsonProcesador = new JSONProcesador();
+    const jsonResultados = jsonProcesador.procesar();
+    expect(jsonResultados.beneficios).to.deep.equal([5, 7, 10]);
+    expect(jsonResultados.pesos).to.deep.equal([2, 3, 4]);
   });
 });
