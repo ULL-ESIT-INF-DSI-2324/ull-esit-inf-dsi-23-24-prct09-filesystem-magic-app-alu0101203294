@@ -76,11 +76,10 @@ export class CardCollection {
         } catch (err) {
             console.error(`Error deleting card file with ID ${cardId}: ${err}`);
         }
-        const collection = this.file.load();
-        if (collection.has(cardId)) {
-            collection.delete(cardId);
-            this.file.save(collection);
-        }
+
+        this.collection = this.collection.filter(card => card.id !== cardId);
+    
+        this.file.save(new Map(this.collection.map(card => [card.id, card])));
     }
 
     public listCards(): void {
