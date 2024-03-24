@@ -3,7 +3,18 @@ import yargs from 'yargs';
 import { Card } from '../Magic/interfaces/card.js';
 import { hideBin } from 'yargs/helpers';
 import { CardCollection } from '../Magic/cardmanager.js'; 
-
+/**
+ * Comandos:
+ * index.js add     Add a new user to the collection
+ * index.js list    List all cards of a user in the collection
+ * index.js update  Update card of a user in the collection
+ * index.js read    Read a card of a user in the collection
+ * index.js remove  Remove a card of a user in the collection
+ * 
+ * Opciones:
+ * --version  Muestra número de versión                                [booleano]
+ * --help     Muestra ayuda                                            [booleano]
+ */
 yargs(hideBin(process.argv))
   .command({
     command: 'add',
@@ -33,8 +44,14 @@ yargs(hideBin(process.argv))
   .help()
   .parse();
 
+/**
+ * Función para manejar los comandos de la línea de comandos.
+ * @param action Acción a realizar (add, list, update, read, remove).
+ * @param argv Argumentos de la línea de comandos.
+ */
 function handleCommand(action: string, argv: any) {
   const collection = new CardCollection(argv.user);
+  // Switch para determinar la acción a realizar según el comando
   switch (action) {
     case 'add':{
       const newCard: Card = { ...argv };
